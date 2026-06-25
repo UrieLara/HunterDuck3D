@@ -20,8 +20,8 @@ public class Raycast : MonoBehaviour
         
         if (Physics.Raycast(ray, out RaycastHit objetoGolpeado, rango)) {
 
-            if (objetoGolpeado.transform.tag == "Animal" || objetoGolpeado.transform.tag == "lb_bird") {
-                // FactoryObjectPooling.Instance.ReturnObjectToPool(objetoGolpeado.collider.gameObject);
+            if (objetoGolpeado.transform.tag == "Animal") {
+                FactoryObjectPooling.Instance.ReturnObjectToPool(objetoGolpeado.collider.gameObject);
                 return;
             }
         }

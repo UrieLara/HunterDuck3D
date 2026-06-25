@@ -222,7 +222,7 @@ Transform:
   m_GameObject: {fileID: 38572729}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.275551, y: -0.54443747, z: -28.59961}
+  m_LocalPosition: {x: -3, y: -0.54443747, z: -28.59961}
   m_LocalScale: {x: 5, y: 1, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -330,6 +330,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &235314938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 235314939}
+  m_Layer: 0
+  m_Name: PatosSueloPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &235314939
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235314938}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 46, y: -0.1, z: -26.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 831171502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &372785099
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,7 +374,7 @@ GameObject:
   m_Layer: 0
   m_Name: FactoryAnimals
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -375,34 +406,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animals:
+  - animalName: pato
+    animalPrefab: {fileID: 8210490481051670031, guid: cdfcd97ab091b774db607c08fb8070a6, type: 3}
+    poolSize: 10
+    spawnTime: 10
+    disableTime: 60
+    type: 0
+    poolObjects: []
   - animalName: cuervo
     animalPrefab: {fileID: 100124, guid: 3e80efd84e52e8042b03cb567084cc50, type: 3}
     poolSize: 10
     spawnTime: 5
-    type: 0
-    poolObjects: []
-  - animalName: pato
-    animalPrefab: {fileID: 8210490481051670031, guid: cdfcd97ab091b774db607c08fb8070a6, type: 3}
-    poolSize: 5
-    spawnTime: 10
+    disableTime: 10
     type: 0
     poolObjects: []
   - animalName: zebra
-    animalPrefab: {fileID: 8210490481051670031, guid: cdfcd97ab091b774db607c08fb8070a6, type: 3}
+    animalPrefab: {fileID: 8275010132917644634, guid: d7366301cf7d0ba49a1b570d45294cba, type: 3}
     poolSize: 5
     spawnTime: 10
+    disableTime: 10
     type: 0
     poolObjects: []
   - animalName: leon
     animalPrefab: {fileID: 1379119284917879647, guid: f0e5229dafdef5046a849e729955685d, type: 3}
     poolSize: 3
     spawnTime: 10
+    disableTime: 10
     type: 1
     poolObjects: []
   - animalName: rino
     animalPrefab: {fileID: 5541606895653099111, guid: 9e16a06caa2687449b2d6137696af484, type: 3}
     poolSize: 3
     spawnTime: 10
+    disableTime: 10
     type: 1
     poolObjects: []
 --- !u!1 &705507993
@@ -605,6 +641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 831171502}
+  - component: {fileID: 831171503}
   m_Layer: 0
   m_Name: Mundo
   m_TagString: Untagged
@@ -627,8 +664,24 @@ Transform:
   m_Children:
   - {fileID: 1022104043}
   - {fileID: 38572733}
+  - {fileID: 235314939}
+  - {fileID: 1939267345}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &831171503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831171501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464978b3dde0d664bb693771d3e23bf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PatosCentroLago: {fileID: 1939267345}
+  PatosCentroSuelo: {fileID: 235314939}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,6 +1194,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830711028}
   m_CullTransparentMesh: 1
+--- !u!1 &1939267344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1939267345}
+  m_Layer: 0
+  m_Name: PatosLagoPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1939267345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939267344}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.7, y: -0.1, z: -27.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 831171502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

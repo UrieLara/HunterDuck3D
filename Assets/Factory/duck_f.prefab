@@ -1558,7 +1558,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8210490481051670031}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 7330622477707321032, guid: df04f87c94ffe214e92722d3d457e98d, type: 3}
   m_Animations:
@@ -1604,8 +1604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febc09bd009bdb549ac5ba93b4732b30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 5
-  radioDeOrbita: 2
+  radioOrbita: 0
+  velocidadRotacion: 0
+  sentido: 0
 --- !u!1 &8334985164401572715
 GameObject:
   m_ObjectHideFlags: 0

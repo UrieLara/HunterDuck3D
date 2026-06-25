@@ -14,6 +14,7 @@ public class AnimalPool
     public GameObject animalPrefab;
     public int poolSize = 5; 
     public float spawnTime = 5f;
+    public float disableTime = 10f;
 
     public AnimalType type;
 
