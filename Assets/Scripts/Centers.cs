@@ -6,8 +6,10 @@ public class Centers : MonoBehaviour
 {
     public static Centers Instance;
 
-    public Transform PatosCentroLago;
+    [Header("Ubicación de animales")]
     public Transform PatosCentroSuelo;
+    public Transform PatosCentroLago;
+    
 
     private void Awake()
     {

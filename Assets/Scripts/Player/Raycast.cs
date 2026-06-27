@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Raycast : MonoBehaviour
 {
-    public float rango = 100f;
+    public float rango = 1f;
 
     void Update()
     {
@@ -20,8 +20,10 @@ public class Raycast : MonoBehaviour
         
         if (Physics.Raycast(ray, out RaycastHit objetoGolpeado, rango)) {
 
-            if (objetoGolpeado.transform.tag == "Animal") {
-                FactoryObjectPooling.Instance.ReturnObjectToPool(objetoGolpeado.collider.gameObject);
+            AnimalBehaviour animal = objetoGolpeado.collider.GetComponentInParent<AnimalBehaviour>();
+          
+            if (animal != null) {
+                animal.RecibirDisparo();
                 return;
             }
         }

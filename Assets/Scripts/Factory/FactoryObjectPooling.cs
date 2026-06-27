@@ -39,26 +39,25 @@ public class FactoryObjectPooling : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnAnimal(AnimalPool animal)
+    IEnumerator SpawnAnimal(AnimalPool animalPool)
     {
         while (true)
         {
-            GameObject obj = GetObjectFromPool(animal.poolObjects);
+            GameObject obj = GetObjectFromPool(animalPool.poolObjects);
 
             if (obj != null)
             {
                  obj.SetActive(true);
 
-                AnimalBehaviour comportamiento = obj.GetComponent<AnimalBehaviour>();
-                if (comportamiento != null)
+                AnimalBehaviour animal = obj.GetComponent<AnimalBehaviour>();
+                if (animal != null)
                 {
-                    comportamiento.OnSpawn();
+                    animal.OnSpawn();
                 }
-
-                StartCoroutine(DisableAfterTime(obj, animal.disableTime));
+              
             }
 
-            yield return new WaitForSeconds(animal.spawnTime);
+            yield return new WaitForSeconds(animalPool.spawnTime);
         }
     }
 
@@ -76,47 +75,13 @@ public class FactoryObjectPooling : MonoBehaviour
 
     public void ReturnObjectToPool(GameObject obj)
     {
+        AnimalBehaviour animal = obj.GetComponent<AnimalBehaviour>();
+        if (animal != null)
+        {
+            animal.OnDespawn();
+        }
+
         obj.SetActive(false);
     }
-
-    IEnumerator DisableAfterTime(GameObject obj, float time)
-    {
-        yield return new WaitForSeconds(time);
-        obj.SetActive(false);
-    }
-
-
-    //IEnumerator SpawnZebra()
-    //{
-    //    while (true)
-    //    {
-    //        GameObject zebra = GetObjectFromPool(zebraPool);
-    //        Vector3 randomOffset = new Vector3(-25f, 0.5f, Random.Range(-10f, 10f));
-
-    //        if (zebra != null)
-    //        {
-    //            zebra.transform.position = zebraPrefab.transform.position + randomOffset;
-    //            zebra.transform.rotation = zebraPrefab.transform.rotation;
-    //            StartCoroutine(DisableAfterTime(zebra, objectDisableTime * 2));
-    //        }
-    //        yield return new WaitForSeconds(zebraTime);
-    //    }
-    //}
-
-    //IEnumerator SpawnCuervo()
-    //{
-    //    while (true)
-    //    {
-    //        GameObject cuervo = GetObjectFromPool(cuervoPool);
-    //        Vector3 randomOffset = new Vector3(Random.Range(-30f, 70f), Random.Range(2f, 6f), Random.Range(-50f, 3f));
-    //        if (cuervo != null)
-    //        {
-    //            cuervo.transform.position = cuervoPrefab.transform.position + randomOffset;
-    //            cuervo.transform.rotation = cuervoPrefab.transform.rotation;
-    //            StartCoroutine(DisableAfterTime(cuervo, objectDisableTime));
-    //        }
-    //        yield return new WaitForSeconds(cuervoTime);
-    //    }
-    //}
 
 }

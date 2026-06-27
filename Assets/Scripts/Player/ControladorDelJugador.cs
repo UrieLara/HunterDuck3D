@@ -3,7 +3,7 @@ using UnityEngine;
 public class ControladorDelJugador : MonoBehaviour
 {
     public float velocidadMovimiento = 5f;
-    public float tamSuelo = 50f;
+    [SerializeField] private float limiteMapa = 50f;
 
     void Update()
     {
@@ -14,8 +14,8 @@ public class ControladorDelJugador : MonoBehaviour
 
         transform.position += vectorDePosicion * velocidadMovimiento * Time.deltaTime;
 
-        if (Mathf.Abs(transform.position.x) > tamSuelo ||
-             Mathf.Abs(transform.position.z) > tamSuelo)
+        if (Mathf.Abs(transform.position.x) > limiteMapa ||
+             Mathf.Abs(transform.position.z) > limiteMapa)
         {
             Limites();
         }
@@ -26,9 +26,9 @@ public class ControladorDelJugador : MonoBehaviour
         Vector3 pos = transform.position;
 
         transform.position = new Vector3(
-            Mathf.Clamp(pos.x, -tamSuelo, tamSuelo),
+            Mathf.Clamp(pos.x, -limiteMapa, limiteMapa),
             pos.y,
-            Mathf.Clamp(pos.z, -tamSuelo, tamSuelo)
+            Mathf.Clamp(pos.z, -limiteMapa, limiteMapa)
         );
     }
 }
