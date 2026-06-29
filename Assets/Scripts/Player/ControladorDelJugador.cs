@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class ControladorDelJugador : MonoBehaviour
 {
-    public float velocidadMovimiento = 5f;
+    [SerializeField] private float velocidadMovimiento = 10f;
     [SerializeField] private float limiteMapa = 50f;
 
+    private void Awake()
+    {
+
+    }
     void Update()
     {
+        if (!GameManager.Instance.Jugando)
+            return;
+
         float movimientoHorizontal = Input.GetAxis("Horizontal");
         float movimientoVertical = Input.GetAxis("Vertical");
 
         Vector3 vectorDePosicion = transform.right * movimientoHorizontal + transform.forward * movimientoVertical;
+
+        vectorDePosicion.Normalize();
 
         transform.position += vectorDePosicion * velocidadMovimiento * Time.deltaTime;
 
