@@ -10,31 +10,31 @@ using System.Collections;
 
 namespace KevinIglesias
 {
-    //public enum ArcherAnimation
-    //{
-    //    Nothing,
-    //    Idles,
-    //    Shoot,
-    //    ShootUp,
-    //    ShootDown,
-    //    ShootFast,
-    //    ShootRunning,
-    //    ShootMovingBackwards,
-    //    StrafeShooting_L,
-    //    StrafeShooting_R,
-    //    SetTrap,
-    //    ThrowTrap,
-    //    Damage,
-    //    Death,
-    //    Unsheathe,
-    //}
-
+    public enum ArcherAnimation
+    {
+        Nothing,
+        Idles,
+        Shoot,
+        ShootUp,
+        ShootDown,
+        ShootFast,
+        ShootRunning,
+        ShootMovingBackwards,
+        StrafeShooting_L,
+        StrafeShooting_R,
+        SetTrap,
+        ThrowTrap,
+        Damage,
+        Death,
+        Unsheathe,
+    }
+    
     public class HumanArcherController : MonoBehaviour
     {
         public Animator archerAnimator;
         
-        //[Header("ANIMATION TO PLAY")]
-        //public ArcherAnimation animationToPlay;
+        [Header("ANIMATION TO PLAY")]
+        public ArcherAnimation animationToPlay;
 
         [Header("BOW")]
         public LineRenderer bowstringLine;
@@ -85,7 +85,7 @@ namespace KevinIglesias
         void Update()
         {
             //Apply selected animation
-            //archerAnimator.SetTrigger(animationToPlay.ToString());
+            archerAnimator.SetTrigger(animationToPlay.ToString());
         }
 
         void CreateBowstring()

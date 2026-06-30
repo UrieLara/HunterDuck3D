@@ -7,6 +7,7 @@ public abstract class AnimalSalvaje : AnimalBehaviour
     protected enum EstadoSalvaje
     {
         esperando,
+        corriendo,
         atacando,
         golpeado,
         muriendo
@@ -14,7 +15,7 @@ public abstract class AnimalSalvaje : AnimalBehaviour
 
     [Header("Ataque")]
     [SerializeField] protected float distanciaSpawn = 20f;
-    [SerializeField] protected float tiempoAdvertencia = 2f;
+    [SerializeField] protected float tiempoAdvertencia = 3f;
 
     protected EstadoSalvaje estado;
     Player jugador => Player.Instance;
@@ -60,7 +61,7 @@ public abstract class AnimalSalvaje : AnimalBehaviour
 
         yield return HUD.Instance.MostrarWarning(tiempoAdvertencia);
 
-        estado = EstadoSalvaje.atacando;
+        estado = EstadoSalvaje.corriendo;
     }
 
     public override void RecibirDisparo()

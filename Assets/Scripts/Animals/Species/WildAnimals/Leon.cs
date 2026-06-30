@@ -31,7 +31,7 @@ public class Leon : AnimalSalvaje
                 Alejarse();
                 break;
 
-            case EstadoSalvaje.atacando:
+            case EstadoSalvaje.corriendo:
                 Perseguir();
                 break;
 
@@ -43,8 +43,8 @@ public class Leon : AnimalSalvaje
         base.OnSpawn();
 
         vida = 2;
-        velocidad = 7f;
-        distanciaSpawn = 30f;
+        velocidad = 10f;
+        distanciaSpawn = 25f;
     }
 
     void Perseguir()
@@ -76,20 +76,21 @@ public class Leon : AnimalSalvaje
 
         yield return new WaitForSeconds(leonAnim["getHit"].length);
 
-        estado = EstadoSalvaje.atacando;
+        estado = EstadoSalvaje.corriendo;
 
     }
 
-    protected override IEnumerator AnimAttack()
+    protected override IEnumerator AnimAttack() 
     {
-        Debug.Log("reproduciendo leon atack");
+        estado = EstadoSalvaje.atacando;
+
+        velocidad = 0f;
+
         string animacion = atackAnimations[Random.Range(0, atackAnimations.Length)];
 
         leonAnim.Play(animacion);
 
         CameraEffects.Instance.DamageEffect();
-
-        velocidad = 0f;
 
         yield return new WaitForSeconds(leonAnim[animacion].length);
 
@@ -100,18 +101,18 @@ public class Leon : AnimalSalvaje
     {
         leonAnim.Play("walk");
         
-        transform.position += -transform.forward * velocidad/3 * Time.deltaTime;
+        transform.position += -transform.forward * velocidad/4 * Time.deltaTime;
 
     }
 
     private IEnumerator EsperarAntesDeAtacar()
     {
         estado = EstadoSalvaje.esperando;
-        velocidad = 10f;
+        velocidad = 15f;
 
         yield return new WaitForSeconds(1f);
 
-        estado = EstadoSalvaje.atacando;
+        estado = EstadoSalvaje.corriendo;
     }
 
     protected override IEnumerator MorirCoroutine()

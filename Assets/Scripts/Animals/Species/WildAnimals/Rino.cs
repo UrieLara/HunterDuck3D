@@ -21,7 +21,7 @@ public class Rino : AnimalSalvaje
                 Esperar();
                 break;
 
-            case EstadoSalvaje.atacando:
+            case EstadoSalvaje.corriendo:
                 Correr();
                 break;
 
@@ -58,7 +58,7 @@ public class Rino : AnimalSalvaje
 
         yield return new WaitForSeconds(rinoAnim["getHit"].length);
 
-        estado = EstadoSalvaje.atacando;
+        estado = EstadoSalvaje.corriendo;
 
     }
 

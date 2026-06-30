@@ -7,9 +7,9 @@ public class Player : MonoBehaviour
 {
     public static Player Instance { get; private set; }
 
-   // public Animator archerAnimator;
+   public Animator archerAnimator;
 
-    private int vida = 30;
+    private int vida = 5;
 
     private void Awake()
     {
@@ -18,15 +18,19 @@ public class Player : MonoBehaviour
             Instance = this;
         }
 
-      //  archerAnimator = GetComponentInChildren<Animator>();
+      archerAnimator = GetComponentInChildren<Animator>();
 
     }
 
     public void Animar(string animacion)
     {
-      //  archerAnimator.SetTrigger(animacion);
+       archerAnimator.SetTrigger(animacion);
     }
 
+    public void Animar(string animacion, bool valor)
+    {
+        archerAnimator.SetBool(animacion, valor);
+    }
     public void RecibirDaño(int daño)
     {
         vida -= daño;
