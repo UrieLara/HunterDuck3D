@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using static MissionManager;
 
 public class HUD : MonoBehaviour
@@ -16,9 +17,11 @@ public class HUD : MonoBehaviour
     [SerializeField] private GameObject warning;
     
 
-    [Header("GameOver")]
+    [Header("Panel")]
     [SerializeField] private GameObject panelGameOver;
     [SerializeField] private TextMeshProUGUI TextGameOver;
+    [SerializeField] private GameObject BtnPausa;
+    [SerializeField] private GameObject BtnReiniciar;
 
     private int ultimoSegundo = -1;
 
@@ -109,12 +112,29 @@ public class HUD : MonoBehaviour
     public void EscribirFinPartida(string text)
     {
         panelGameOver.SetActive(true);
+        BtnReiniciar.SetActive(true);
+        BtnPausa.SetActive(false);
         TextGameOver.text = text;
+    }
+
+    public void MostrarPausa()
+    {
+        panelGameOver.SetActive(true);
+        BtnReiniciar.SetActive(false);
+        BtnPausa.SetActive(true);
+
+        TextGameOver.text = "Pausa";
+    }
+
+    public void CancelarPausa()
+    {
+        panelGameOver.SetActive(false);
+        GameManager.Instance.CambiarEstado(EstadoJuego.Jugando);
     }
 
     public void OnClickReiniciar()
     {
-        GameManager.Instance.CambiarEstado(EstadoJuego.Jugando);
+        GameManager.Instance.NuevaPartida();
     }
 
     private void ActualizarCronometro()

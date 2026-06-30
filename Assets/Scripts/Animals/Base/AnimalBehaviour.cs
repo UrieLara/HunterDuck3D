@@ -59,7 +59,7 @@ public abstract class AnimalBehaviour : MonoBehaviour
 
     protected abstract IEnumerator MorirCoroutine();
 
-    protected void ComprobarLimites()
+    protected virtual void ComprobarLimites()
     {
         if (!spawned)
             return;

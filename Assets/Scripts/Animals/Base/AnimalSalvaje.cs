@@ -64,6 +64,14 @@ public abstract class AnimalSalvaje : AnimalBehaviour
         estado = EstadoSalvaje.corriendo;
     }
 
+    protected override void ComprobarLimites()
+    {
+        if (estado == EstadoSalvaje.esperando)
+            return;
+
+        base.ComprobarLimites();    
+    }
+
     public override void RecibirDisparo()
     {
         if (estado == EstadoSalvaje.golpeado || estado == EstadoSalvaje.muriendo)

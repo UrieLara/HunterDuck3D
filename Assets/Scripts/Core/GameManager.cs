@@ -6,6 +6,7 @@ using UnityEngine;
 public enum EstadoJuego {
     MenuPrincipal,
     Jugando,
+    Pausa,
     Victoria,
     Derrota
 
@@ -43,7 +44,19 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Estado != EstadoJuego.Jugando)
+            return;
+
         ActivarCronometro();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (Estado == EstadoJuego.Jugando)
+                CambiarEstado(EstadoJuego.Pausa);
+
+            else if (Estado == EstadoJuego.Pausa)
+                CambiarEstado(EstadoJuego.Jugando);
+        }
     }
 
     public void CambiarEstado(EstadoJuego nuevoEstado)
@@ -51,7 +64,6 @@ public class GameManager : MonoBehaviour
         Estado = nuevoEstado;
 
         ConfigurarCursor();
-
         switch (Estado)
         {
             case EstadoJuego.MenuPrincipal:
@@ -69,7 +81,28 @@ public class GameManager : MonoBehaviour
             case EstadoJuego.Derrota:
                 Perder();
                 break;
+
+            case EstadoJuego.Pausa:
+                EntrarPausa();
+                break;
         }
+
+        
+    }
+
+    public void NuevaPartida()
+    {
+        tiempoJuego = 0f;
+        Time.timeScale = 1f;
+
+        CargarEscena("GameScene");
+
+        CambiarEstado(EstadoJuego.Jugando);
+    }
+
+    void EntrarEnJuego()
+    {
+        Time.timeScale = 1f;
     }
 
     public void CargarEscena(string nombreEscena)
@@ -82,11 +115,10 @@ public class GameManager : MonoBehaviour
         CargarEscena("MenuPrincipal");
     }
 
-    public void EntrarEnJuego()
+    void EntrarPausa()
     {
-        Time.timeScale = 1f;
-        CargarEscena("GameScene");
-        tiempoJuego = 0f; 
+        HUD.Instance.MostrarPausa();
+        Time.timeScale = 0f;
     }
 
     void Ganar()

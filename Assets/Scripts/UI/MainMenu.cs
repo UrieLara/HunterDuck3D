@@ -26,6 +26,6 @@ public class MainMenu : MonoBehaviour
     {
         PlayerData.Nombre = inputNombre.text.Trim();
 
-        GameManager.Instance.CambiarEstado(EstadoJuego.Jugando);
+        GameManager.Instance.NuevaPartida();
     }
 }
